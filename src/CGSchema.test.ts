@@ -53,4 +53,36 @@ describe(CGSchema, () => {
       }
     })
   })
+
+  describe('custom error messages', () => {
+    it('uses custom error messages', () => {
+      const schema = new CGSchema((x) => typeof x === 'number', {
+        required_message: 'I must exist!',
+        invalid_type_message: "I'm the wrong type!",
+      })
+
+      let error
+      try {
+        schema.parse(null)
+      } catch (err) {
+        error = err
+      }
+      expect(error).toBeInstanceOf(CGError)
+      expect(error).toMatchObject({
+        code: '__required__',
+        message: 'I must exist!',
+      })
+
+      try {
+        schema.parse('hello')
+      } catch (err) {
+        error = err
+      }
+      expect(error).toBeInstanceOf(CGError)
+      expect(error).toMatchObject({
+        code: '__invalid_type__',
+        message: "I'm the wrong type!",
+      })
+    })
+  })
 })
