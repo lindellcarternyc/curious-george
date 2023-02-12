@@ -1,6 +1,6 @@
 import { CGError } from './error'
 
-interface CGSchemaOptions {
+export interface CGSchemaOptions {
   required_message?: string
   invalid_type_message?: string
 }
