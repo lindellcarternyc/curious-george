@@ -1,6 +1,6 @@
 import { array, ArraySchema } from './array'
 import { number } from './number'
-import { string } from './string'
+import { CGString, string } from './string'
 
 describe(array, () => {
   it('creates an ArraySchema instance', () => {
@@ -36,6 +36,13 @@ describe(array, () => {
         message: 'Invalid type.',
         path: '2',
       })
+    })
+  })
+
+  describe('@element', () => {
+    it('provides the underlying schema applied to each element', () => {
+      const schema = array(string())
+      expect(schema.element).toBeInstanceOf(CGString)
     })
   })
 })

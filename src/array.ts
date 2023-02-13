@@ -9,6 +9,10 @@ export class ArraySchema<T> extends CGSchema<T[]> {
     super(Array.isArray, options)
   }
 
+  get element(): CGSchema<T> {
+    return this.schema
+  }
+
   parse(value: unknown): T[] {
     try {
       const valueArray = super.parse(value) as unknown[]
