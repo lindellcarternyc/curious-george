@@ -1,4 +1,8 @@
-type CGErrorCode = '__required__' | '__invalid_type__' | '__literal__'
+type CGErrorCode =
+  | '__required__'
+  | '__invalid_type__'
+  | '__literal__'
+  | '__length__'
 
 interface CGErrorArgs {
   code: CGErrorCode
